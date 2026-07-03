@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI 과학자·연구 에이전트 카탈로그 | NAIS</title>
+<meta name="description" content="NAIS 관점의 AI 과학자·연구 에이전트 조사 카탈로그. 핵심등급·도입성숙도·검증상태로 필터링되는 지속 업데이트 목록." />
+<style>
+  :root{--bg:#f7f8fa;--card:#fff;--ink:#1a1d24;--muted:#5f6672;--line:#e4e7ec;
+    --accent:#1f3864;--accent2:#2e5395;--chip:#eef2f8;
+    --h:#c6efce;--hf:#166534;--m:#ffeb9c;--mf:#8a6d00;--l:#eceff3;--lf:#6b7280;
+    --blue:#dbe8fb;--bluef:#1e4e8c;--red:#f8cbad;--redf:#9c3b12;}
+  @media (prefers-color-scheme:dark){:root{--bg:#14161a;--card:#1c1f26;--ink:#e6e9ef;--muted:#9aa2af;--line:#2b2f38;
+    --accent:#22314f;--accent2:#33507f;--chip:#242a34;
+    --h:#1e3a26;--hf:#9fe1b0;--m:#3a3210;--mf:#f0d675;--l:#262a31;--lf:#9aa2af;
+    --blue:#1c2f4a;--bluef:#9cc0f0;--red:#3a1e14;--redf:#f0a988;}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Segoe UI','Malgun Gothic','맑은 고딕',system-ui,sans-serif;line-height:1.5}
+  header{background:var(--accent);color:#fff;padding:22px 20px}
+  .wrap{max-width:1360px;margin:0 auto}
+  header h1{margin:0;font-size:20px;font-weight:600}
+  header p{margin:6px 0 0;font-size:13px;opacity:.9}
+  main{max-width:1360px;margin:0 auto;padding:16px 20px 60px}
+  .kpis{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;min-width:120px}
+  .kpi .n{font-size:22px;font-weight:600}
+  .kpi .t{font-size:12px;color:var(--muted)}
+  .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0}
+  .controls input[type=search]{flex:1;min-width:200px;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font-size:14px}
+  .controls select{padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font-size:14px}
+  .stat{font-size:13px;color:var(--muted)}
+  .stat b{color:var(--ink)}
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+  table{border-collapse:collapse;width:100%;font-size:13px;min-width:1180px}
+  thead th{position:sticky;top:0;background:var(--accent2);color:#fff;text-align:left;padding:9px 9px;font-weight:600;white-space:nowrap;cursor:pointer;user-select:none}
+  thead th .a{opacity:.7;font-size:11px}
+  tbody td{padding:8px 9px;border-top:1px solid var(--line);vertical-align:top}
+  tbody tr:hover{background:var(--chip)}
+  td.name{font-weight:600;min-width:150px}
+  td.feat{min-width:300px}
+  .cat{display:inline-block;padding:2px 8px;border-radius:6px;background:var(--chip);color:var(--accent2);font-size:12px;white-space:nowrap}
+  .pill{display:inline-block;padding:2px 8px;border-radius:6px;font-weight:600;font-size:12px;white-space:nowrap}
+  .g0{background:var(--h);color:var(--hf)} .g1{background:var(--m);color:var(--mf)}
+  .g2{background:var(--blue);color:var(--bluef)} .g3{background:var(--l);color:var(--lf)}
+  .lv상{background:var(--h);color:var(--hf)} .lv중{background:var(--m);color:var(--mf)} .lv하{background:var(--l);color:var(--lf)}
+  .v0{background:var(--h);color:var(--hf)} .v1{background:var(--m);color:var(--mf)} .v2{background:var(--red);color:var(--redf)}
+  a.src{color:var(--accent2);font-size:12px;word-break:break-all}
+  .muted{color:var(--muted)}
+  footer{max-width:1360px;margin:0 auto;padding:0 20px 40px;font-size:12px;color:var(--muted)}
+  .toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;font-size:13px}
+  .toolbar a{color:var(--accent2)}
+  .loading{padding:40px;text-align:center;color:var(--muted)}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1>AI 과학자·연구 에이전트 카탈로그</h1>
+  <p>NAIS 검토용 · 핵심등급 / 도입성숙도 / 검증상태 기준으로 정리한 조사표 · 지속 업데이트</p>
+</div></header>
+
+<main>
+  <div class="kpis" id="kpis"></div>
+  <div class="controls">
+    <input id="q" type="search" placeholder="이름, 개발사, 특징 검색…" />
+    <select id="fcat"><option value="">전체 대분류</option></select>
+    <select id="fgrade"><option value="">핵심등급(전체)</option><option>핵심(즉시)</option><option>관찰(유망·미성숙)</option><option>후보</option><option>참고</option></select>
+    <select id="fver"><option value="">검증상태(전체)</option><option>확인완료</option><option>부분확인</option><option>추가검증 필요</option></select>
+    <select id="ftype"><option value="">유형(전체)</option></select>
+    <span class="stat" id="stat"></span>
+  </div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr>
+        <th data-k="grade">핵심등급 <span class="a"></span></th>
+        <th data-k="name">이름 <span class="a"></span></th>
+        <th data-k="category">대분류 <span class="a"></span></th>
+        <th data-k="type">유형 <span class="a"></span></th>
+        <th data-k="priority">벤치마킹<br>가치 <span class="a"></span></th>
+        <th data-k="maturity">도입<br>성숙도 <span class="a"></span></th>
+        <th data-k="verify">검증 <span class="a"></span></th>
+        <th data-k="score">점수 <span class="a"></span></th>
+        <th data-k="provider">개발사/출처 <span class="a"></span></th>
+        <th data-k="released">출시 <span class="a"></span></th>
+        <th data-k="features">핵심 특징</th>
+        <th data-k="url">출처</th>
+      </tr></thead>
+      <tbody id="rows"><tr><td colspan="12" class="loading">데이터를 불러오는 중…</td></tr></tbody>
+    </table>
+  </div>
+</main>
+
+<footer>
+  <div class="toolbar">
+    <span>데이터: <a href="agents.csv">agents.csv</a> (이 파일만 수정·푸시하면 사이트가 자동 갱신됩니다)</span>
+    <span>·</span><span id="updated"></span>
+  </div>
+  <p style="margin-top:10px">핵심등급 = 벤치마킹가치 × 도입성숙도 조합. 정렬점수 = 우선검토+검증+유형성숙 합산(최대 100). 연구논문·프로토타입은 성숙도가 낮을 수 있습니다.</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script>
+let DATA=[],view=[],sortKey='score',sortAsc=false;
+const $=s=>document.querySelector(s);
+const esc=s=>(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const gcls={'핵심(즉시)':'g0','관찰(유망·미성숙)':'g1','후보':'g2','참고':'g3'};
+const vcls={'확인완료':'v0','부분확인':'v1','추가검증 필요':'v2'};
+function urlCell(u){if(!u)return '<span class="muted">—</span>';
+  return '<a class="src" href="'+esc(u)+'" target="_blank" rel="noopener">링크</a>';}
+function kpis(){
+  const n=DATA.length, core=DATA.filter(d=>d.grade==='핵심(즉시)').length,
+    watch=DATA.filter(d=>d.grade==='관찰(유망·미성숙)').length,
+    ok=DATA.filter(d=>d.verify==='확인완료').length;
+  $('#kpis').innerHTML=[['전체',n],['핵심(즉시)',core],['관찰(유망·미성숙)',watch],['확인완료',ok]]
+    .map(x=>'<div class="kpi"><div class="n">'+x[1]+'</div><div class="t">'+x[0]+'</div></div>').join('');
+}
+function render(){
+  const rows=$('#rows');
+  if(!view.length){rows.innerHTML='<tr><td colspan="12" class="loading">결과 없음</td></tr>';}
+  else rows.innerHTML=view.map(d=>'<tr>'+
+    '<td><span class="pill '+(gcls[d.grade]||'g3')+'">'+esc(d.grade)+'</span></td>'+
+    '<td class="name">'+esc(d.name)+'</td>'+
+    '<td><span class="cat">'+esc(d.category)+'</span></td>'+
+    '<td class="muted">'+esc(d.type)+'</td>'+
+    '<td><span class="pill lv'+esc(d.priority)+'">'+esc(d.priority)+'</span></td>'+
+    '<td><span class="pill lv'+esc(d.maturity)+'">'+esc(d.maturity)+'</span></td>'+
+    '<td><span class="pill '+(vcls[d.verify]||'v1')+'">'+esc(d.verify)+'</span></td>'+
+    '<td>'+esc(d.score)+'</td>'+
+    '<td class="muted">'+esc(d.provider)+'</td>'+
+    '<td>'+esc(d.released)+'</td>'+
+    '<td class="feat">'+esc(d.features)+'</td>'+
+    '<td>'+urlCell(d.url)+'</td></tr>').join('');
+}
+function apply(){
+  const q=$('#q').value.trim().toLowerCase(),c=$('#fcat').value,g=$('#fgrade').value,v=$('#fver').value,t=$('#ftype').value;
+  view=DATA.filter(function(d){
+    if(c&&d.category!==c)return false; if(g&&d.grade!==g)return false;
+    if(v&&d.verify!==v)return false; if(t&&d.type!==t)return false;
+    if(q){const h=(d.name+' '+d.provider+' '+d.features+' '+d.subcategory+' '+d.nais).toLowerCase(); if(h.indexOf(q)<0)return false;}
+    return true;
+  });
+  view.sort(function(a,b){
+    let x=a[sortKey]||'',y=b[sortKey]||'';
+    if(sortKey==='score'){x=+x||0;y=+y||0;return sortAsc?x-y:y-x;}
+    return sortAsc?String(x).localeCompare(String(y),'ko'):String(y).localeCompare(String(x),'ko');
+  });
+  render();
+  $('#stat').innerHTML='표시 <b>'+view.length+'</b> / 전체 <b>'+DATA.length+'</b>개';
+}
+document.querySelectorAll('thead th[data-k]').forEach(function(th){th.addEventListener('click',function(){
+  const k=th.dataset.k; if(sortKey===k)sortAsc=!sortAsc; else{sortKey=k;sortAsc=(k!=='score');}
+  document.querySelectorAll('thead th .a').forEach(function(a){a.textContent='';});
+  th.querySelector('.a').textContent=sortAsc?'▲':'▼'; apply();});});
+['q','fcat','fgrade','fver','ftype'].forEach(function(id){$('#'+id).addEventListener('input',apply);$('#'+id).addEventListener('change',apply);});
+Papa.parse('agents.csv',{download:true,header:true,skipEmptyLines:true,complete:function(res){
+  DATA=res.data.filter(function(r){return r.name;});
+  const cats=[...new Set(DATA.map(d=>d.category))], types=[...new Set(DATA.map(d=>d.type))];
+  $('#fcat').innerHTML='<option value="">전체 대분류</option>'+cats.map(c=>'<option>'+esc(c)+'</option>').join('');
+  $('#ftype').innerHTML='<option value="">유형(전체)</option>'+types.map(c=>'<option>'+esc(c)+'</option>').join('');
+  kpis(); view=DATA.slice(); apply();
+  $('#updated').textContent='최종 렌더링: '+new Date().toISOString().slice(0,10);
+},error:function(){$('#rows').innerHTML='<tr><td colspan="12" class="loading">agents.csv 로드 실패 — GitHub Pages(https)에서 열어 주세요.</td></tr>';}});
+</script>
+</body>
+</html>
