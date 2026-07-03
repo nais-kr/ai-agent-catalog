@@ -1,4 +1,4 @@
-id,category,subcategory,name,type,features,openness,nais,naisuse,priority,maturity,grade,score,verify,provider,released,url,note
+﻿id,category,subcategory,name,type,features,openness,nais,naisuse,priority,maturity,grade,score,verify,provider,released,url,note
 AG017,AI 과학자·자율 연구 Agent,생명과학 연구환경,Claude Science,상용·플랫폼,"Claude 기반 생명과학 연구환경, 문헌·데이터·코드·도구 연계",상용 베타,연구자용 통합 Agent UX 참고,벤치마킹/도입 검토,상,상,핵심(즉시),100,확인완료,Anthropic,2026.06(베타),https://claude.com/product/claude-science,새 모델이 아니라 과학 도구·DB·컴퓨트 연계를 포함한 연구 workbench/app 성격으로 관리 권장.
 AG018,AI 과학자·자율 연구 Agent,상용 연구 플랫폼,Microsoft Discovery,상용·플랫폼,그래프 지식엔진 기반으로 데이터분석·가설생성·실험·지식관리를 다중 Agent로 조율하는 R&D 플랫폼(2026 GA),상용(Azure),대규모 산업·연구 R&D Agent 플랫폼 벤치마킹,벤치마킹/도입 검토,상,상,핵심(즉시),100,확인완료,Microsoft,2025.05→2026.06(GA),https://azure.microsoft.com/products/microsoft-discovery,
 AG013,AI 과학자·자율 연구 Agent,범용 과학 모델,ScienceOne-AI,상용·플랫폼,"과학 기반 대모델과 다중 Agent를 결합해 문헌, 계산, 과학 문제 해결 지원",플랫폼+모델 공개,NAIS 과학기반 모델·Agent 플랫폼 참고,벤치마킹/도입 검토,상,상,핵심(즉시),100,확인완료,중국과학원 자동화연구소(CAS),2025.04,https://github.com/ScienceOne-AI,
