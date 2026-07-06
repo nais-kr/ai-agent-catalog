@@ -9,11 +9,11 @@
   :root{--bg:#f7f8fa;--card:#fff;--ink:#1a1d24;--muted:#5f6672;--line:#e4e7ec;
     --accent:#1f3864;--accent2:#2e5395;--chip:#eef2f8;
     --h:#c6efce;--hf:#166534;--m:#ffeb9c;--mf:#8a6d00;--l:#eceff3;--lf:#6b7280;
-    --blue:#dbe8fb;--bluef:#1e4e8c;--red:#f8cbad;--redf:#9c3b12;}
+    --blue:#dbe8fb;--bluef:#1e4e8c;--red:#f8cbad;--redf:#9c3b12;--gray:#d6d9de;--grayf:#4b5563;}
   @media (prefers-color-scheme:dark){:root{--bg:#14161a;--card:#1c1f26;--ink:#e6e9ef;--muted:#9aa2af;--line:#2b2f38;
     --accent:#22314f;--accent2:#33507f;--chip:#242a34;
     --h:#1e3a26;--hf:#9fe1b0;--m:#3a3210;--mf:#f0d675;--l:#262a31;--lf:#9aa2af;
-    --blue:#1c2f4a;--bluef:#9cc0f0;--red:#3a1e14;--redf:#f0a988;}}
+    --blue:#1c2f4a;--bluef:#9cc0f0;--red:#3a1e14;--redf:#f0a988;--gray:#2b2f38;--grayf:#aab2bf;}}
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:'Segoe UI','Malgun Gothic','맑은 고딕',system-ui,sans-serif;line-height:1.5}
   header{background:var(--accent);color:#fff;padding:22px 20px}
@@ -36,6 +36,7 @@
   thead th .a{opacity:.7;font-size:11px}
   tbody td{padding:8px 9px;border-top:1px solid var(--line);vertical-align:top}
   tbody tr:hover{background:var(--chip)}
+  tbody tr.dep td.name,tbody tr.dep td.feat{text-decoration:line-through;opacity:.7}
   td.name{font-weight:600;min-width:150px}
   td.feat{min-width:300px}
   .cat{display:inline-block;padding:2px 8px;border-radius:6px;background:var(--chip);color:var(--accent2);font-size:12px;white-space:nowrap}
@@ -44,6 +45,8 @@
   .g2{background:var(--blue);color:var(--bluef)} .g3{background:var(--l);color:var(--lf)}
   .lv상{background:var(--h);color:var(--hf)} .lv중{background:var(--m);color:var(--mf)} .lv하{background:var(--l);color:var(--lf)}
   .v0{background:var(--h);color:var(--hf)} .v1{background:var(--m);color:var(--mf)} .v2{background:var(--red);color:var(--redf)}
+  .st{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:6px;font-weight:600;font-size:11px;white-space:nowrap;background:var(--red);color:var(--redf)}
+  .st.sup{background:var(--gray);color:var(--grayf)}
   a.src{color:var(--accent2);font-size:12px;word-break:break-all}
   .muted{color:var(--muted)}
   footer{width:96%;max-width:2000px;margin:0 auto;padding:0 20px 40px;font-size:12px;color:var(--muted)}
@@ -55,7 +58,7 @@
 <body>
 <header><div class="wrap">
   <h1>AI 과학자·연구 에이전트 카탈로그</h1>
-  <p>NAIS 검토용 · 핵심등급 / 도입성숙도 / 검증상태 기준으로 정리한 조사표 · 지속 업데이트</p>
+  <p>NAIS 검토용 · 핵심등급 / 도입성숙도 / 검증상태 기준으로 정리한 조사표 · 매주 자동 갱신</p>
 </div></header>
 
 <main>
@@ -65,7 +68,8 @@
     <select id="fcat"><option value="">전체 대분류</option></select>
     <select id="fgrade"><option value="">핵심등급(전체)</option><option>핵심(즉시)</option><option>관찰(유망·미성숙)</option><option>후보</option><option>참고</option></select>
     <select id="fver"><option value="">검증상태(전체)</option><option>확인완료</option><option>부분확인</option><option>추가검증 필요</option></select>
-    <select id="ftype"><option value="">유형(전체)</option></select>
+    <select id="fgroup"><option value="">계열(전체)</option></select>
+    <select id="fstatus"><option value="">상태(전체)</option><option value="active">정상(active)</option><option value="deprecated">폐기(deprecated)</option><option value="superseded">대체(superseded)</option></select>
     <span class="stat" id="stat"></span>
   </div>
   <div class="tablewrap">
@@ -80,11 +84,12 @@
         <th data-k="verify">검증 <span class="a"></span></th>
         <th data-k="score">점수 <span class="a"></span></th>
         <th data-k="provider">개발사/출처 <span class="a"></span></th>
+        <th data-k="provider_group">계열 <span class="a"></span></th>
         <th data-k="released">출시 <span class="a"></span></th>
         <th data-k="features">핵심 특징</th>
         <th data-k="url">출처</th>
       </tr></thead>
-      <tbody id="rows"><tr><td colspan="12" class="loading">데이터를 불러오는 중…</td></tr></tbody>
+      <tbody id="rows"><tr><td colspan="13" class="loading">데이터를 불러오는 중…</td></tr></tbody>
     </table>
   </div>
 </main>
@@ -94,7 +99,7 @@
     <span>데이터: <a href="agents.csv">agents.csv</a> (이 파일만 수정·푸시하면 사이트가 자동 갱신됩니다)</span>
     <span>·</span><span id="updated"></span>
   </div>
-  <p style="margin-top:10px">핵심등급 = 벤치마킹가치 × 도입성숙도 조합. 정렬점수 = 우선검토+검증+유형성숙 합산(최대 100). 연구논문·프로토타입은 성숙도가 낮을 수 있습니다.</p>
+  <p style="margin-top:10px">핵심등급 = 벤치마킹가치 × 도입성숙도 조합. 정렬점수 = grade·maturity·verify 룩업(최대 100). KPI 합계는 중복(canonical_id) 제외. 폐기/대체 항목은 취소선으로 표시되며 목록에는 유지됩니다.</p>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
@@ -104,21 +109,34 @@ const $=s=>document.querySelector(s);
 const esc=s=>(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const gcls={'핵심(즉시)':'g0','관찰(유망·미성숙)':'g1','후보':'g2','참고':'g3'};
 const vcls={'확인완료':'v0','부분확인':'v1','추가검증 필요':'v2'};
+// canonical_id가 비어 있으면 대표(중복 아님) 행
+const isCanon=d=>!(d.canonical_id||'').trim();
+const isDep=d=>{const s=(d.status||'').trim();return s==='deprecated'||s==='superseded';};
 function urlCell(u){if(!u)return '<span class="muted">—</span>';
   return '<a class="src" href="'+esc(u)+'" target="_blank" rel="noopener">링크</a>';}
+function statusBadge(d){
+  const s=(d.status||'').trim();
+  if(s==='deprecated')return '<span class="st">폐기</span>';
+  if(s==='superseded'){const by=(d.superseded_by||'').trim();
+    return '<span class="st sup">대체→'+esc(by||'?')+'</span>';}
+  return '';
+}
 function kpis(){
-  const n=DATA.length, core=DATA.filter(d=>d.grade==='핵심(즉시)').length,
-    watch=DATA.filter(d=>d.grade==='관찰(유망·미성숙)').length,
-    ok=DATA.filter(d=>d.verify==='확인완료').length;
-  $('#kpis').innerHTML=[['전체',n],['핵심(즉시)',core],['관찰(유망·미성숙)',watch],['확인완료',ok]]
+  const canon=DATA.filter(isCanon);
+  const n=canon.length,
+    core=canon.filter(d=>d.grade==='핵심(즉시)').length,
+    watch=canon.filter(d=>d.grade==='관찰(유망·미성숙)').length,
+    ok=canon.filter(d=>d.verify==='확인완료').length,
+    dep=canon.filter(isDep).length;
+  $('#kpis').innerHTML=[['전체(중복제외)',n],['핵심(즉시)',core],['관찰(유망·미성숙)',watch],['확인완료',ok],['폐기·대체',dep]]
     .map(x=>'<div class="kpi"><div class="n">'+x[1]+'</div><div class="t">'+x[0]+'</div></div>').join('');
 }
 function render(){
   const rows=$('#rows');
-  if(!view.length){rows.innerHTML='<tr><td colspan="12" class="loading">결과 없음</td></tr>';}
-  else rows.innerHTML=view.map(d=>'<tr>'+
+  if(!view.length){rows.innerHTML='<tr><td colspan="13" class="loading">결과 없음</td></tr>';}
+  else rows.innerHTML=view.map(d=>'<tr'+(isDep(d)?' class="dep"':'')+'>'+
     '<td><span class="pill '+(gcls[d.grade]||'g3')+'">'+esc(d.grade)+'</span></td>'+
-    '<td class="name">'+esc(d.name)+'</td>'+
+    '<td class="name">'+esc(d.name)+statusBadge(d)+'</td>'+
     '<td><span class="cat">'+esc(d.category)+'</span></td>'+
     '<td class="muted">'+esc(d.type)+'</td>'+
     '<td><span class="pill lv'+esc(d.priority)+'">'+esc(d.priority)+'</span></td>'+
@@ -126,16 +144,19 @@ function render(){
     '<td><span class="pill '+(vcls[d.verify]||'v1')+'">'+esc(d.verify)+'</span></td>'+
     '<td>'+esc(d.score)+'</td>'+
     '<td class="muted">'+esc(d.provider)+'</td>'+
+    '<td class="muted">'+esc(d.provider_group)+'</td>'+
     '<td>'+esc(d.released)+'</td>'+
     '<td class="feat">'+esc(d.features)+'</td>'+
     '<td>'+urlCell(d.url)+'</td></tr>').join('');
 }
 function apply(){
-  const q=$('#q').value.trim().toLowerCase(),c=$('#fcat').value,g=$('#fgrade').value,v=$('#fver').value,t=$('#ftype').value;
+  const q=$('#q').value.trim().toLowerCase(),c=$('#fcat').value,g=$('#fgrade').value,
+    v=$('#fver').value,gr=$('#fgroup').value,st=$('#fstatus').value;
   view=DATA.filter(function(d){
     if(c&&d.category!==c)return false; if(g&&d.grade!==g)return false;
-    if(v&&d.verify!==v)return false; if(t&&d.type!==t)return false;
-    if(q){const h=(d.name+' '+d.provider+' '+d.features+' '+d.subcategory+' '+d.nais).toLowerCase(); if(h.indexOf(q)<0)return false;}
+    if(v&&d.verify!==v)return false; if(gr&&d.provider_group!==gr)return false;
+    if(st&&(d.status||'active')!==st)return false;
+    if(q){const h=(d.name+' '+d.provider+' '+d.features+' '+d.subcategory+' '+d.nais+' '+d.provider_group).toLowerCase(); if(h.indexOf(q)<0)return false;}
     return true;
   });
   view.sort(function(a,b){
@@ -150,15 +171,16 @@ document.querySelectorAll('thead th[data-k]').forEach(function(th){th.addEventLi
   const k=th.dataset.k; if(sortKey===k)sortAsc=!sortAsc; else{sortKey=k;sortAsc=(k!=='score');}
   document.querySelectorAll('thead th .a').forEach(function(a){a.textContent='';});
   th.querySelector('.a').textContent=sortAsc?'▲':'▼'; apply();});});
-['q','fcat','fgrade','fver','ftype'].forEach(function(id){$('#'+id).addEventListener('input',apply);$('#'+id).addEventListener('change',apply);});
+['q','fcat','fgrade','fver','fgroup','fstatus'].forEach(function(id){$('#'+id).addEventListener('input',apply);$('#'+id).addEventListener('change',apply);});
 Papa.parse('agents.csv',{download:true,header:true,skipEmptyLines:true,complete:function(res){
   DATA=res.data.filter(function(r){return r.name;});
-  const cats=[...new Set(DATA.map(d=>d.category))], types=[...new Set(DATA.map(d=>d.type))];
+  const cats=[...new Set(DATA.map(d=>d.category))].filter(Boolean);
+  const groups=[...new Set(DATA.map(d=>d.provider_group))].filter(Boolean).sort((a,b)=>a.localeCompare(b,'ko'));
   $('#fcat').innerHTML='<option value="">전체 대분류</option>'+cats.map(c=>'<option>'+esc(c)+'</option>').join('');
-  $('#ftype').innerHTML='<option value="">유형(전체)</option>'+types.map(c=>'<option>'+esc(c)+'</option>').join('');
+  $('#fgroup').innerHTML='<option value="">계열(전체)</option>'+groups.map(c=>'<option>'+esc(c)+'</option>').join('');
   kpis(); view=DATA.slice(); apply();
   $('#updated').textContent='최종 렌더링: '+new Date().toISOString().slice(0,10);
-},error:function(){$('#rows').innerHTML='<tr><td colspan="12" class="loading">agents.csv 로드 실패 — GitHub Pages(https)에서 열어 주세요.</td></tr>';}});
+},error:function(){$('#rows').innerHTML='<tr><td colspan="13" class="loading">agents.csv 로드 실패 — GitHub Pages(https)에서 열어 주세요.</td></tr>';}});
 </script>
 </body>
 </html>
