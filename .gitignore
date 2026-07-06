@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# OS / 편집기
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# 로그·임시
+*.log
+*.tmp
+
+# 참고: candidates.json, weekly_report.md 는 워크플로우가 커밋하는
+# 산출물이므로 무시하지 않는다.
