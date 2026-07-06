@@ -51,18 +51,19 @@ jobs:
           OAUTH: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           APIKEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          if [ -n "$OAUTH" ]; then
-            echo "mode=oauth" >> "$GITHUB_OUTPUT"
-          elif [ -n "$APIKEY" ]; then
-            echo "mode=api" >> "$GITHUB_OUTPUT"
-          else
-            echo "mode=none" >> "$GITHUB_OUTPUT"
-          fi
-          echo "판정 경로: $(tail -n1 "$GITHUB_OUTPUT")"
+          HAS_OAUTH=false; HAS_API=false
+          [ -n "$OAUTH" ] && HAS_OAUTH=true
+          [ -n "$APIKEY" ] && HAS_API=true
+          echo "has_oauth=$HAS_OAUTH" >> "$GITHUB_OUTPUT"
+          echo "has_api=$HAS_API"     >> "$GITHUB_OUTPUT"
+          echo "구독 토큰: $HAS_OAUTH / API 키: $HAS_API"
 
-      # 3a) 구독 경로 — Claude Code Action이 CLAUDE.md 지침대로 큐레이션
+      # 3a) 구독 경로 — Claude Code Action이 CLAUDE.md 지침대로 큐레이션.
+      #     실패해도(예: 토큰 만료) 중단하지 않고 아래 API 폴백이 이어받도록 continue-on-error.
       - name: Judge with Claude subscription
-        if: steps.detect.outputs.mode == 'oauth'
+        id: judge_oauth
+        if: steps.detect.outputs.has_oauth == 'true'
+        continue-on-error: true
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
@@ -80,17 +81,35 @@ jobs:
                실패하면 원인을 고쳐 다시 통과시켜라.
             커밋·푸시·PR 생성은 하지 마라(이후 워크플로우 단계가 처리한다).
 
-      # 3b) API 폴백 경로 — Haiku로 후보→행 변환
+      # 3a') 구독 결과 확인 — 성공/실패를 로그로 남긴다.
+      - name: Report subscription outcome
+        if: steps.detect.outputs.has_oauth == 'true'
+        run: |
+          if [ "${{ steps.judge_oauth.outcome }}" = "success" ]; then
+            echo "구독 경로 성공."
+          else
+            echo "::warning::구독 경로 실패(${{ steps.judge_oauth.outcome }}) — 토큰 만료 가능. API 폴백을 시도합니다."
+          fi
+
+      # 3b) API 폴백 — 다음 중 하나면 실행:
+      #     (1) 구독 토큰이 아예 없고 API 키가 있음, 또는
+      #     (2) 구독을 시도했으나 실패했고 API 키가 있음.
       - name: Judge with Claude API (fallback)
-        if: steps.detect.outputs.mode == 'api'
+        id: judge_api
+        if: >-
+          steps.detect.outputs.has_api == 'true' &&
+          (steps.detect.outputs.has_oauth != 'true' || steps.judge_oauth.outcome != 'success')
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python3 scripts/judge_api.py
 
-      - name: No judge path configured
-        if: steps.detect.outputs.mode == 'none'
+      # 3c) 판정 경로가 하나도 성사되지 않은 경우(수집만)
+      - name: No judge path succeeded
+        if: >-
+          (steps.detect.outputs.has_oauth != 'true' && steps.detect.outputs.has_api != 'true') ||
+          (steps.judge_oauth.outcome == 'failure' && steps.detect.outputs.has_api != 'true')
         run: |
-          echo "::warning::CLAUDE_CODE_OAUTH_TOKEN / ANTHROPIC_API_KEY 시크릿이 없어 판정을 건너뜁니다."
+          echo "::warning::판정이 수행되지 않았습니다(구독 실패 또는 시크릿 미설정, API 폴백 불가)."
           echo "candidates.json만 수집되었습니다. SETUP.md의 시크릿 등록을 참고하세요."
 
       # 4) 안전장치 — 실패 시 여기서 중단(커밋 안 됨)
@@ -134,7 +153,7 @@ jobs:
             git push -f origin "$BRANCH"
             BODY="자동 수집·판정 결과입니다. \`weekly_report.md\`와 \`agents.csv\` diff를 검토 후 머지하세요.
 
-            - 판정 경로: ${{ steps.detect.outputs.mode }}
+            - 판정 경로: 구독=${{ steps.judge_oauth.outcome || 'skipped' }}, API폴백=${{ steps.judge_api.outcome || 'skipped' }}
             - validate.py 통과 완료(행 삭제/컬럼 변경 없음 확인)"
             gh pr create --base main --head "$BRANCH" \
               --title "주간 카탈로그 갱신 ${DATE}" \
