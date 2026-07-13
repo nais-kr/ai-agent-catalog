@@ -1,0 +1,272 @@
+[
+  {
+    "name": "ARA-Labs/Agent-Native-Research-Artifact",
+    "url": "https://www.agenticresearch.sh/",
+    "repo_url": "https://github.com/ARA-Labs/Agent-Native-Research-Artifact",
+    "source": "github",
+    "summary": "Research Ecosystem for Rigorous and Trustworthy AI Scientists",
+    "released": "2026-03-27",
+    "stars": 491
+  },
+  {
+    "name": "krzysztofdudek/ResearcherSkill",
+    "url": "https://github.com/krzysztofdudek/ResearcherSkill",
+    "repo_url": "https://github.com/krzysztofdudek/ResearcherSkill",
+    "source": "github",
+    "summary": "One file. Your AI coding agent becomes a scientist. 30+ experiments while you sleep.",
+    "released": "2026-03-22",
+    "stars": 248
+  },
+  {
+    "name": "bio-xyz/BioAgents",
+    "url": "https://github.com/bio-xyz/BioAgents",
+    "repo_url": "https://github.com/bio-xyz/BioAgents",
+    "source": "github",
+    "summary": "BioAgents: An AI scientist framework for autonomous deep research in biological sciences. Multi-agent system combining literature analysis agents with data scientist agents to enable deep research automation through user feedback integration and iterative scientific discovery. Inspired by advances in Edison Kosmos, Sakana AI, K-Dense and others.",
+    "released": "2025-10-17",
+    "stars": 177
+  },
+  {
+    "name": "Eldergenix/Plato-Scientific-Research-Autonomous-Agent",
+    "url": "https://github.com/Eldergenix/Plato-Scientific-Research-Autonomous-Agent",
+    "repo_url": "https://github.com/Eldergenix/Plato-Scientific-Research-Autonomous-Agent",
+    "source": "github",
+    "summary": "Multi-agent AI scientist that turns experimental data into > publication-ready research papers.",
+    "released": "2026-04-29",
+    "stars": 85
+  },
+  {
+    "name": "conradry/open-coscientist-agents",
+    "url": "https://github.com/conradry/open-coscientist-agents",
+    "repo_url": "https://github.com/conradry/open-coscientist-agents",
+    "source": "github",
+    "summary": "Implementation of Google Deepmind's AI co-scientist with LangGraph and GPT Researcher",
+    "released": "2025-04-04",
+    "stars": 68
+  },
+  {
+    "name": "jataware/open-coscientist",
+    "url": "https://github.com/jataware/open-coscientist",
+    "repo_url": "https://github.com/jataware/open-coscientist",
+    "source": "github",
+    "summary": "Open Coscientist is an open-source adaptation based on Google Research's AI Co-Scientist research paper. We provide an open implementation that generates, reviews, ranks, and evolves research hypotheses using the multi-agent architecture described.",
+    "released": "2026-01-15",
+    "stars": 51
+  },
+  {
+    "name": "ai-in-pm/AI-Co-Scientist",
+    "url": "https://github.com/ai-in-pm/AI-Co-Scientist",
+    "repo_url": "https://github.com/ai-in-pm/AI-Co-Scientist",
+    "source": "github",
+    "summary": "AI Co-Scientist is a comprehensive multi-agent AI system designed for scientific research and hypothesis generation. ",
+    "released": "2025-03-04",
+    "stars": 21
+  },
+  {
+    "name": "HolobiomicsLab/Perspicacite-AI",
+    "url": "https://holobiomicslab.cnrs.fr/",
+    "repo_url": "https://github.com/HolobiomicsLab/Perspicacite-AI",
+    "source": "github",
+    "summary": "An agentic AI assistant designed for scientists, researchers, and students who want to find and understand academic literature without getting lost in hundreds of papers",
+    "released": "2026-03-18",
+    "stars": 18
+  },
+  {
+    "name": "iabheejit/AI-Co-Scientist",
+    "url": "https://github.com/iabheejit/AI-Co-Scientist",
+    "repo_url": "https://github.com/iabheejit/AI-Co-Scientist",
+    "source": "github",
+    "summary": "An advanced research assistant that utilizes AI agents to generate novel research directions and analyze scientific literature. This platform combines CrewAI with literature search tools to help researchers explore new ideas and hypotheses.",
+    "released": "2025-02-26",
+    "stars": 16
+  },
+  {
+    "name": "mlbio-epfl/HeurekaBench",
+    "url": "https://brbiclab.epfl.ch/projects/heurekabench/",
+    "repo_url": "https://github.com/mlbio-epfl/HeurekaBench",
+    "source": "github",
+    "summary": "[ICLR 2026] A framework to \"create benchmarks\" and \"evaluate AI co-scientists\" in experimental data-driven real-world scientific research.",
+    "released": "2025-12-22",
+    "stars": 15
+  },
+  {
+    "name": "khoj-ai/khoj",
+    "url": "https://khoj.dev",
+    "repo_url": "https://github.com/khoj-ai/khoj",
+    "source": "github",
+    "summary": "Your AI second brain. Self-hostable. Get answers from the web or your docs. Build custom agents, schedule automations, do deep research. Turn any online or local LLM into your personal, autonomous AI (gpt, claude, gemini, llama, qwen, mistral). Get started - free.",
+    "released": "2021-08-16",
+    "stars": 35666
+  },
+  {
+    "name": "assafelovic/gpt-researcher",
+    "url": "https://gptr.dev",
+    "repo_url": "https://github.com/assafelovic/gpt-researcher",
+    "source": "github",
+    "summary": "An autonomous agent that conducts deep research on any data using any LLM providers",
+    "released": "2023-05-12",
+    "stars": 28274
+  },
+  {
+    "name": "wanshuiyin/Auto-claude-code-research-in-sleep",
+    "url": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep",
+    "repo_url": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep",
+    "source": "github",
+    "summary": "ARIS ⚔️ (Auto-Research-In-Sleep) — Lightweight Markdown-only skills for autonomous ML research: cross-model review loops, idea discovery, and experiment automation. No framework, no lock-in — works with Claude Code, Codex, OpenClaw, or any LLM agent.",
+    "released": "2026-03-10",
+    "stars": 13317
+  },
+  {
+    "name": "0x4m4/hexstrike-ai",
+    "url": "https://www.hexstrike.com/",
+    "repo_url": "https://github.com/0x4m4/hexstrike-ai",
+    "source": "github",
+    "summary": "HexStrike AI MCP Agents is an advanced MCP server that lets AI agents (Claude, GPT, Copilot, etc.) autonomously run 150+ cybersecurity tools for automated pentesting, vulnerability discovery, bug bounty automation, and security research. Seamlessly bridge LLMs with real-world offensive security capabilities.",
+    "released": "2025-07-10",
+    "stars": 10278
+  },
+  {
+    "name": "MervinPraison/PraisonAI",
+    "url": "https://praison.ai/docs",
+    "repo_url": "https://github.com/MervinPraison/PraisonAI",
+    "source": "github",
+    "summary": "PraisonAI 🦞 — Hire a 24/7 AI Workforce. Stop writing boilerplate and start shipping autonomous self-improving agents that research, plan, code, and execute tasks. Deployed in 5 lines of code with built-in memory, RAG, and support for 100+ LLMs.",
+    "released": "2024-03-19",
+    "stars": 8425
+  },
+  {
+    "name": "VoltAgent/awesome-ai-agent-papers",
+    "url": "https://github.com/VoltAgent/voltagent",
+    "repo_url": "https://github.com/VoltAgent/awesome-ai-agent-papers",
+    "source": "github",
+    "summary": "A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workflows, and autonomous systems.",
+    "released": "2026-02-10",
+    "stars": 1565
+  },
+  {
+    "name": "tmgthb/Autonomous-Agents",
+    "url": "https://github.com/tmgthb/Autonomous-Agents",
+    "repo_url": "https://github.com/tmgthb/Autonomous-Agents",
+    "source": "github",
+    "summary": "Autonomous Agents (LLMs) research papers. Updated Daily.",
+    "released": "2023-09-16",
+    "stars": 1343
+  },
+  {
+    "name": "dCaples/AutoDidact",
+    "url": "https://github.com/dCaples/AutoDidact",
+    "repo_url": "https://github.com/dCaples/AutoDidact",
+    "source": "github",
+    "summary": "Autonomously train research-agent LLMs on custom data using reinforcement learning and self-verification.",
+    "released": "2025-03-08",
+    "stars": 690
+  },
+  {
+    "name": "oneil512/INSIGHT",
+    "url": "https://github.com/oneil512/INSIGHT",
+    "repo_url": "https://github.com/oneil512/INSIGHT",
+    "source": "github",
+    "summary": "INSIGHT is an autonomous AI that can do medical research!",
+    "released": "2023-04-08",
+    "stars": 414
+  },
+  {
+    "name": "libraryofcelsus/Aetherius_AI_Assistant",
+    "url": "https://www.libraryofcelsus.com/aetherius/",
+    "repo_url": "https://github.com/libraryofcelsus/Aetherius_AI_Assistant",
+    "source": "github",
+    "summary": "A completely private, locally-operated Ai Assistant/Chatbot/Sub-Agent Framework with realistic Long Term Memory and thought formation using Open Source LLMs. Qdrant is used for the Vector DB.",
+    "released": "2023-04-03",
+    "stars": 315
+  },
+  {
+    "name": "K-Dense-AI/scientific-agent-skills",
+    "url": "https://k-dense.ai",
+    "repo_url": "https://github.com/K-Dense-AI/scientific-agent-skills",
+    "source": "github",
+    "summary": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 160,000+ scientists worldwide. 140 ready-to-use skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard.",
+    "released": "2025-10-19",
+    "stars": 30763
+  },
+  {
+    "name": "InternScience/InternAgent",
+    "url": "https://discovery.intern-ai.org.cn/home",
+    "repo_url": "https://github.com/InternScience/InternAgent",
+    "source": "github",
+    "summary": "InternAgent-1.5: A Unified Agentic Framework for Long-Horizon Autonomous Scientific Discovery",
+    "released": "2025-05-16",
+    "stars": 1372
+  },
+  {
+    "name": "allenai/discoveryworld",
+    "url": "https://arxiv.org/abs/2406.06769",
+    "repo_url": "https://github.com/allenai/discoveryworld",
+    "source": "github",
+    "summary": "A virtual environment for developing and evaluating automated scientific discovery agents.",
+    "released": "2023-11-27",
+    "stars": 218
+  },
+  {
+    "name": "HKUST-KnowComp/NewtonBench",
+    "url": "https://github.com/HKUST-KnowComp/NewtonBench",
+    "repo_url": "https://github.com/HKUST-KnowComp/NewtonBench",
+    "source": "github",
+    "summary": "[ICLR2026] NewtonBench: Benchmarking Generalizable Scientific Law Discovery in LLM Agents",
+    "released": "2025-10-08",
+    "stars": 152
+  },
+  {
+    "name": "OSU-NLP-Group/ScienceAgentBench",
+    "url": "https://osu-nlp-group.github.io/ScienceAgentBench",
+    "repo_url": "https://github.com/OSU-NLP-Group/ScienceAgentBench",
+    "source": "github",
+    "summary": "[ICLR'25] ScienceAgentBench: Toward Rigorous Assessment of Language Agents for Data-Driven Scientific Discovery",
+    "released": "2024-10-02",
+    "stars": 145
+  },
+  {
+    "name": "aipoch/open-science",
+    "url": "https://www.aipoch.com/open-science",
+    "repo_url": "https://github.com/aipoch/open-science",
+    "source": "github",
+    "summary": "An open-source, model-agnostic AI workbench for scientific discovery.",
+    "released": "2026-07-03",
+    "stars": 125
+  },
+  {
+    "name": "zjlrock777/Awesome-LLM-Agents-Scientific-Discovery",
+    "url": "https://github.com/zjlrock777/Awesome-LLM-Agents-Scientific-Discovery",
+    "repo_url": "https://github.com/zjlrock777/Awesome-LLM-Agents-Scientific-Discovery",
+    "source": "github",
+    "summary": "A curated list of LLM powered AI Agents in Biomedical Research. Medical Image Analysis, Multi-omics Genomics Analysis, Biomedical Scientific Discoveries...",
+    "released": "2024-11-01",
+    "stars": 77
+  },
+  {
+    "name": "xbtlin/ai-berkshire",
+    "url": "https://github.com/xbtlin/ai-berkshire#readme",
+    "repo_url": "https://github.com/xbtlin/ai-berkshire",
+    "source": "github",
+    "summary": "AI 时代的伯克希尔：基于 Claude Code / Codex 的价值投资研究框架。巴菲特·芒格·段永平·李录四大师方法论 + 多Agent并行研究。| AI-era Berkshire: a value investing research framework built for Claude Code / Codex. 4 masters' methodologies + multi-agent adversarial analysis.",
+    "released": "2026-04-07",
+    "stars": 12907
+  },
+  {
+    "name": "SkyworkAI/DeepResearchAgent",
+    "url": "https://skyworkai.github.io/DeepResearchAgent/",
+    "repo_url": "https://github.com/SkyworkAI/DeepResearchAgent",
+    "source": "github",
+    "summary": "DeepResearchAgent is a hierarchical multi-agent system designed not only for deep research tasks but also for general-purpose task solving. The framework leverages a top-level planning agent to coordinate multiple specialized lower-level agents, enabling automated task decomposition and efficient execution across diverse and complex domains.",
+    "released": "2025-05-20",
+    "stars": 3487
+  },
+  {
+    "name": "guy-hartstein/company-research-agent",
+    "url": "https://companyresearcher.tavily.com",
+    "repo_url": "https://github.com/guy-hartstein/company-research-agent",
+    "source": "github",
+    "summary": "An agentic company research tool powered by LangGraph and Tavily that conducts deep diligence on companies using a multi-agent framework. It leverages Google's Gemini 2.5 Flash and OpenAI's GPT-5.1 on the backend for inference.",
+    "released": "2025-02-12",
+    "stars": 2003
+  }
+]
