@@ -9,57 +9,45 @@
 ai-agent-catalog/
 ├── agents.csv                          # 데이터(25컬럼, UTF-8 BOM) — 유일한 원본
 ├── index.html                          # GitHub Pages 화면 (agents.csv를 fetch)
-├── CLAUDE.md                           # 자동 큐레이션 판단 지침(구독 경로가 읽음)
+├── CLAUDE.md                           # 자동 큐레이션 판단 지침(가이드라인)
 ├── candidates.json                     # collect.py 산출물(주간 후보) — 자동 생성
 ├── weekly_report.md                    # 주간 갱신 요약 — 자동 생성
 ├── scripts/
 │   ├── collect.py                      # arXiv·GitHub 후보 수집(LLM 없음, 표준 라이브러리)
-│   ├── judge_api.py                    # Claude API 폴백(후보→CSV 행)
+│   ├── judge_api.py                    # OpenAI ChatGPT 판정기(후보→CSV 행)
 │   └── validate.py                     # 안전장치(컬럼/soft-delete/status 검증)
 └── .github/workflows/
     ├── deploy.yml                      # push 시 GitHub Pages 배포
     └── weekly-catalog-update.yml       # 매주 월요일 자동 갱신
 ```
 
-## 2. 판정 경로 두 가지
+## 2. 판정 경로
 
-워크플로우는 시크릿 유무로 자동 분기한다(구독 우선).
+워크플로우는 OpenAI ChatGPT API를 사용해 후보를 판정하고 카탈로그에 반영한다.
 
 | 경로 | 필요 시크릿 | 방식 | 비용 |
 |------|-------------|------|------|
-| **구독(권장)** | `CLAUDE_CODE_OAUTH_TOKEN` | `claude-code-action`이 CLAUDE.md 지침대로 큐레이션 | Claude 구독에 포함 |
-| **API 폴백** | `ANTHROPIC_API_KEY` | `judge_api.py`가 Haiku로 후보를 행으로 변환 | 사용량 과금(소액) |
+| **API** | `OPENAI_API_KEY` | `judge_api.py`가 OpenAI ChatGPT로 후보를 판정 | 사용량 과금(소액) |
 | 없음 | — | 수집만 하고 판정 건너뜀(경고) | 무료 |
 
-> 둘 다 있으면 **구독 경로**를 쓴다. 공개 저장소이므로 GitHub Actions 실행은 무료다.
+> 공개 저장소이므로 GitHub Actions 실행은 무료입니다.
 
 ## 3. 시크릿 등록
 
 저장소 → **Settings → Secrets and variables → Actions → New repository secret**
 
-### (A) 구독 토큰 — `CLAUDE_CODE_OAUTH_TOKEN` (권장)
+### (A) API 키 — `OPENAI_API_KEY`
 
-로컬에 Claude Code가 설치된 상태에서:
+<https://platform.openai.com/account/api-keys> 에서 API 키를 발급 후
+`OPENAI_API_KEY` 이름으로 등록합니다.
+
+### (B) 로컬에서 점검
 
 ```bash
-claude setup-token
+python3 scripts/collect.py            # candidates.json 생성
+OPENAI_API_KEY=sk-... python3 scripts/judge_api.py   # OpenAI ChatGPT API로 판정 테스트
+python3 scripts/validate.py           # 안전장치 통과 여부
 ```
-
-출력된 토큰을 `CLAUDE_CODE_OAUTH_TOKEN` 시크릿으로 등록한다.
-(Claude Pro/Max 구독 계정으로 로그인되어 있어야 한다.)
-
-### (B) API 키 — `ANTHROPIC_API_KEY` (폴백)
-
-<https://console.anthropic.com> → API Keys에서 발급 → 같은 이름으로 등록.
-구독 토큰을 넣었다면 없어도 되지만, 폴백으로 함께 넣어두면 안전하다.
-
-### (C) GitHub App 설치 (구독 경로 사용 시)
-
-`claude-code-action`은 GitHub App으로 동작한다. 최초 1회:
-
-1. <https://github.com/apps/claude> 에서 **Claude GitHub App**을 이 저장소에 설치.
-2. 저장소 **Settings → Actions → General → Workflow permissions**에서
-   **Read and write permissions** 활성화(PR·커밋 생성 허용).
 
 ## 4. GitHub Pages 설정 (1회)
 
@@ -79,7 +67,7 @@ claude setup-token
 ### 로컬에서 점검
 ```bash
 python3 scripts/collect.py            # candidates.json 생성
-ANTHROPIC_API_KEY=sk-... python3 scripts/judge_api.py   # (선택) API로 판정 테스트
+OPENAI_API_KEY=sk-... python3 scripts/judge_api.py   # OpenAI ChatGPT API로 판정 테스트
 python3 scripts/validate.py           # 안전장치 통과 여부
 ```
 
@@ -111,8 +99,7 @@ python3 scripts/validate.py           # 안전장치 통과 여부
 | GitHub Actions (공개 저장소) | 무료 |
 | GitHub Pages | 무료 |
 | arXiv / GitHub API 수집 | 무료 |
-| 구독 경로(`CLAUDE_CODE_OAUTH_TOKEN`) | Claude 구독료에 포함(추가 과금 없음) |
-| API 폴백(`ANTHROPIC_API_KEY`, Haiku) | 후보 수십 건 판정 시 주당 수 센트 수준 |
+| OpenAI ChatGPT API(`OPENAI_API_KEY`) | 사용량 기반 과금(후보 수십 건 판정 시 주당 소액) |
 
 ## 9. 문제 해결
 
