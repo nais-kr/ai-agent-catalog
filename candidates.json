@@ -1,0 +1,262 @@
+[
+  {
+    "name": "Sage-Taiyi: A Metacognitive Architecture for Scientific Discovery",
+    "url": "http://arxiv.org/abs/2611.12762v2",
+    "repo_url": "",
+    "source": "arxiv",
+    "summary": "We introduce Sage-Taiyi, a metacognition-inspired architecture that uses accumulated scientific understanding to guide what to investigate next and how to investigate it. Through explicit monitoring and control, the system revises its understanding of evidence, assumptions, and unresolved questions, then uses these assessments to adapt research targets and select reusable reasoning methods. On Taiyi-Bench, an AI co-scientist ideation benchmark comprising 265 tasks from 50 papers across ten disciplines, Sage-Taiyi ranks first on all eight metrics of historical rediscovery and open-ended ideatio",
+    "released": "2026-11-09"
+  },
+  {
+    "name": "Scientist World: Grow a Research World for AI-Scientists",
+    "url": "http://arxiv.org/abs/2611.08478v1",
+    "repo_url": "",
+    "source": "arxiv",
+    "summary": "AI-Scientists arrived, but a world for them to grow in did not. Human scientists take theirs for granted $-$ centuries of open problems and shared ideas, waiting in the scientific literature. To AI-Scientists, that world is readable but not runnable, so we build Scientist World for them: every research paper becomes an executable environment. Our autonomous pipeline extracts each paper's open-ended research question and reproduces its proposed method as the baseline; an AI-Scientist entering the environment is evaluated against what the human authors achieved. We release the first 1,000 verifi",
+    "released": "2026-11-05"
+  },
+  {
+    "name": "El Agente Fármaco: A Scalable AI Scientist for Drug Discovery",
+    "url": "http://arxiv.org/abs/2611.03832v1",
+    "repo_url": "",
+    "source": "arxiv",
+    "summary": "Computational drug discovery offers a growing range of tools for proposing and evaluating molecules, but combining them and deciding what to do next still requires substantial expert effort. Here, we introduce El Agente Fármaco, an AI scientist that uses modern large language model (LLM) technology to turn discovery goals expressed in everyday language into complex, scalable computational screening workflows. The agentic harness selects scientific tools, reviews their results, and adjusts subsequent steps to the target and the user's objectives. Our approach centers on a shared scientific memo",
+    "released": "2026-11-02"
+  },
+  {
+    "name": "Reimagining computational quantum research with AI scientists",
+    "url": "http://arxiv.org/abs/2611.02833v1",
+    "repo_url": "",
+    "source": "arxiv",
+    "summary": "AI scientists are expanding automated research across scientific domains, yet their ability to turn the scientific record into a foundation for autonomous discovery remains elusive. Here we uncover a fundamental barrier to this transition and demonstrate a route to overcome it in computational quantum science, where advances shape both what we can learn from complex quantum systems and what quantum computing can ultimately deliver. To identify this barrier, we introduce OmniQ, an expert-audited virtual research environment that converts published studies into executable reproduction tasks. Acr",
+    "released": "2026-11-02"
+  },
+  {
+    "name": "PAPERBENCHX: Can AI Reproduce Science Across Disciplines?",
+    "url": "http://arxiv.org/abs/2610.39744v1",
+    "repo_url": "",
+    "source": "arxiv",
+    "summary": "Before AI can be trusted to discover new science, it should be able to reproduce what science already knows. Reproduction provides a rigorous checkpoint for an AI scientist: the target claim is known, yet recovering it still requires translating an incomplete scientific description into an executable experiment and producing evidence that can be independently verified. Existing research-reproduction benchmarks largely focus on AI and machine learning, where experiments share relatively homogeneous software stacks. Extending this capability across scientific disciplines introduces a different c",
+    "released": "2026-10-29"
+  },
+  {
+    "name": "Letting AI Formulate the Research Question: Autonomous Research Agents",
+    "url": "http://arxiv.org/abs/2610.39620v1",
+    "repo_url": "",
+    "source": "arxiv",
+    "summary": "Systems such as The AI Scientist have shown that AI agents can carry out and write up research, but in those demonstrations humans chose the research area and selected the outputs to show. We study letting the AI formulate the research question itself, and we report every run. Our system gives an off-the-shelf coding agent an instruction document and two skills: one for formulating the question, in which the agent diverges from recent technologies into problems of other fields, screens its candidates for known failure modes and obtains a critique from a different model; and one for peer review",
+    "released": "2026-10-29"
+  },
+  {
+    "name": "VerifiedLab: Harnessing Knowns for Unknowns",
+    "url": "http://arxiv.org/abs/2610.37923v1",
+    "repo_url": "",
+    "source": "arxiv",
+    "summary": "Across human history, knowledge has undergone several transitions, from orality to writing and then to digital archives. At each transition, humans established new conventions to preserve knowledge for the new era. Nowadays, as research agents are increasingly deployed for laboratory experiments, knowledge is crossing another boundary: from records written for humans to those for machines. In this work, we introduce VerifiedLab, a multi-agent harness framework for this human-to-machine transition of knowledge. VerifiedLab transforms research output from passive artifacts into active systems th",
+    "released": "2026-10-27"
+  },
+  {
+    "name": "Do AI Scientists Know What's New?",
+    "url": "http://arxiv.org/abs/2610.36511v1",
+    "repo_url": "",
+    "source": "arxiv",
+    "summary": "A major challenge facing AI scientific discovery pipelines is how to determine when a generated idea is meaningfully novel. Ideally, novelty checks in these pipelines must be able to reject non-novel ideas while not rejecting too many novel ideas, and they should also be able to distinguish which parts of a proposal are non-novel, as opposed to opaquely discarding entire proposals. We design an analytical framework for evaluation of novelty checks with temporal ground truth at both the proposal- and claim-level, using four datasets of 1,060 proposals built from published papers, reviewer dispu",
+    "released": "2026-10-27"
+  },
+  {
+    "name": "ExpEvolve: Structuring and Reusing Experience for Open-Ended Discovery",
+    "url": "http://arxiv.org/abs/2610.29303v1",
+    "repo_url": "",
+    "source": "arxiv",
+    "summary": "Evolutionary coding agents such as AlphaEvolve are one of the notable successes in using Large Language Models (LLMs) to build AI Scientists. These agents tackle open-ended scientific problems by iteratively improving and evolving programs, leveraging the prior knowledge and reasoning capabilities of LLMs. Despite their success, mutations over programs are mostly low-level upon surface heuristics, without a persistent unit of control. In contrast, science compounds through ideas. In this work, we propose ExpEvolve, which injects idea-level extraction and control into evolution: it discovers an",
+    "released": "2026-10-21"
+  },
+  {
+    "name": "Auto-MD-bench: Evaluating Autoresearch Agents for Real-World Medical Tasks",
+    "url": "http://arxiv.org/abs/2610.25069v1",
+    "repo_url": "",
+    "source": "arxiv",
+    "summary": "Autonomous agents are increasingly capable of developing machine learning (ML) models end to end. In medical practice, however, strong performance on the target metric does not fully characterize how good the models are in real-world use cases. For example, medical ML models should also provide well-calibrated risk estimates and remain robust across patient populations. Yet autonomous model development is typically guided by task objectives that emphasize simple predictive discrimination (e.g. AUROC). This raises a key question: are these objectives sufficient to guide agents toward models tha",
+    "released": "2026-10-18"
+  },
+  {
+    "name": "ARA-Labs/Agent-Native-Research-Artifact",
+    "url": "https://www.agenticresearch.sh/",
+    "repo_url": "https://github.com/ARA-Labs/Agent-Native-Research-Artifact",
+    "source": "github",
+    "summary": "Research Artifact Protocol for Rigorous and Trustworthy AI Scientists",
+    "released": "2026-03-27",
+    "stars": 710
+  },
+  {
+    "name": "bio-xyz/BioAgents",
+    "url": "https://github.com/bio-xyz/BioAgents",
+    "repo_url": "https://github.com/bio-xyz/BioAgents",
+    "source": "github",
+    "summary": "BioAgents: An AI scientist framework for autonomous deep research in biological sciences. Multi-agent system combining literature analysis agents with data scientist agents to enable deep research automation through user feedback integration and iterative scientific discovery. Inspired by advances in Edison Kosmos, Sakana AI, K-Dense and others.",
+    "released": "2025-10-17",
+    "stars": 185
+  },
+  {
+    "name": "Omni-Scientist/OmniScientist",
+    "url": "https://omni-scientist.github.io/",
+    "repo_url": "https://github.com/Omni-Scientist/OmniScientist",
+    "source": "github",
+    "summary": "An Omni-Modal, Omni-Discipline AI Scientist",
+    "released": "2026-08-16",
+    "stars": 173
+  },
+  {
+    "name": "KalarisLabs/research-agent-skills",
+    "url": "https://docs.kalarislabs.com/research-agent-skills",
+    "repo_url": "https://github.com/KalarisLabs/research-agent-skills",
+    "source": "github",
+    "summary": "Turn any AI agent into a research co-scientist: 280+ open-source agent skills for literature reviews, hypotheses, experimental design, data analysis, paper writing, citation verification and peer review. Claude Code, Codex, Cursor, Gemini CLI and any Agent Skills harness. npx skills add KalarisLabs/research-agent-skills",
+    "released": "2026-07-07",
+    "stars": 147
+  },
+  {
+    "name": "Eldergenix/Plato-Scientific-Research-Autonomous-Agent",
+    "url": "https://plato-production-dd69.up.railway.app/",
+    "repo_url": "https://github.com/Eldergenix/Plato-Scientific-Research-Autonomous-Agent",
+    "source": "github",
+    "summary": "Multi-agent AI scientist that turns experimental data into > publication-ready research papers.",
+    "released": "2026-04-29",
+    "stars": 122
+  },
+  {
+    "name": "conradry/open-coscientist-agents",
+    "url": "https://github.com/conradry/open-coscientist-agents",
+    "repo_url": "https://github.com/conradry/open-coscientist-agents",
+    "source": "github",
+    "summary": "Implementation of Google Deepmind's AI co-scientist with LangGraph and GPT Researcher",
+    "released": "2025-04-04",
+    "stars": 68
+  },
+  {
+    "name": "jataware/open-coscientist",
+    "url": "https://github.com/jataware/open-coscientist",
+    "repo_url": "https://github.com/jataware/open-coscientist",
+    "source": "github",
+    "summary": "Open Coscientist is an open-source adaptation based on Google Research's AI Co-Scientist research paper. We provide an open implementation that generates, reviews, ranks, and evolves research hypotheses using the multi-agent architecture described.",
+    "released": "2026-01-15",
+    "stars": 66
+  },
+  {
+    "name": "mlbio-epfl/HeurekaBench",
+    "url": "https://brbiclab.epfl.ch/projects/heurekabench/",
+    "repo_url": "https://github.com/mlbio-epfl/HeurekaBench",
+    "source": "github",
+    "summary": "[ICLR 2026] A framework to \"create benchmarks\" and \"evaluate AI co-scientists\" in experimental data-driven real-world scientific research.",
+    "released": "2025-12-22",
+    "stars": 23
+  },
+  {
+    "name": "HolobiomicsLab/Perspicacite-AI",
+    "url": "https://holobiomicslab.cnrs.fr/perspicacite/",
+    "repo_url": "https://github.com/HolobiomicsLab/Perspicacite-AI",
+    "source": "github",
+    "summary": "An agentic AI assistant designed for scientists, researchers, and students who want to find and understand academic literature without getting lost in hundreds of papers",
+    "released": "2026-03-18",
+    "stars": 21
+  },
+  {
+    "name": "ai-in-pm/AI-Co-Scientist",
+    "url": "https://github.com/ai-in-pm/AI-Co-Scientist",
+    "repo_url": "https://github.com/ai-in-pm/AI-Co-Scientist",
+    "source": "github",
+    "summary": "AI Co-Scientist is a comprehensive multi-agent AI system designed for scientific research and hypothesis generation. ",
+    "released": "2025-03-04",
+    "stars": 20
+  },
+  {
+    "name": "khoj-ai/khoj",
+    "url": "https://khoj.dev",
+    "repo_url": "https://github.com/khoj-ai/khoj",
+    "source": "github",
+    "summary": "Your AI second brain. Self-hostable. Get answers from the web or your docs. Build custom agents, schedule automations, do deep research. Turn any online or local LLM into your personal, autonomous AI (gpt, claude, gemini, llama, qwen, mistral). Get started - free.",
+    "released": "2021-08-16",
+    "stars": 38143
+  },
+  {
+    "name": "assafelovic/gpt-researcher",
+    "url": "https://gptr.dev",
+    "repo_url": "https://github.com/assafelovic/gpt-researcher",
+    "source": "github",
+    "summary": "An autonomous agent that conducts deep research on any data using any LLM providers",
+    "released": "2023-05-12",
+    "stars": 30713
+  },
+  {
+    "name": "wanshuiyin/Auto-claude-code-research-in-sleep",
+    "url": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep",
+    "repo_url": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep",
+    "source": "github",
+    "summary": "ARIS ⚔️ (Auto-Research-In-Sleep) — Lightweight Markdown-only skills for autonomous ML research: cross-model review loops, idea discovery, and experiment automation. No framework, no lock-in — works with Claude Code, Codex, OpenClaw, or any LLM agent.",
+    "released": "2026-03-10",
+    "stars": 19259
+  },
+  {
+    "name": "0x4m4/hexstrike-ai",
+    "url": "https://www.hexstrike.com/",
+    "repo_url": "https://github.com/0x4m4/hexstrike-ai",
+    "source": "github",
+    "summary": "HexStrike AI MCP Agents is an advanced MCP server that lets AI agents (Claude, GPT, Copilot, etc.) autonomously run 150+ cybersecurity tools for automated pentesting, vulnerability discovery, bug bounty automation, and security research. Seamlessly bridge LLMs with real-world offensive security capabilities.",
+    "released": "2025-07-10",
+    "stars": 13620
+  },
+  {
+    "name": "VoltAgent/awesome-ai-agent-papers",
+    "url": "https://starterkit.getdesign.md/",
+    "repo_url": "https://github.com/VoltAgent/awesome-ai-agent-papers",
+    "source": "github",
+    "summary": "A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workflows, and autonomous systems.",
+    "released": "2026-02-10",
+    "stars": 1904
+  },
+  {
+    "name": "tmgthb/Autonomous-Agents",
+    "url": "https://github.com/tmgthb/Autonomous-Agents",
+    "repo_url": "https://github.com/tmgthb/Autonomous-Agents",
+    "source": "github",
+    "summary": "Autonomous Agents (LLMs) research papers. Updated Daily.",
+    "released": "2023-09-16",
+    "stars": 1389
+  },
+  {
+    "name": "kyky2347/ALTA",
+    "url": "https://github.com/kyky2347/ALTA",
+    "repo_url": "https://github.com/kyky2347/ALTA",
+    "source": "github",
+    "summary": "Autonomous LLM Trading Asterism — a research-only multi-agent trading platform with evidence-first research, an auditable console, Shadow simulation and explicitly authorized broker execution.",
+    "released": "2026-08-27",
+    "stars": 1078
+  },
+  {
+    "name": "dCaples/AutoDidact",
+    "url": "https://github.com/dCaples/AutoDidact",
+    "repo_url": "https://github.com/dCaples/AutoDidact",
+    "source": "github",
+    "summary": "Autonomously train research-agent LLMs on custom data using reinforcement learning and self-verification.",
+    "released": "2025-03-08",
+    "stars": 689
+  },
+  {
+    "name": "Yeti-791/Awesome-Offensive-AI-Agentic-Landscape",
+    "url": "https://github.com/Yeti-791/Awesome-Offensive-AI-Agentic-Landscape",
+    "repo_url": "https://github.com/Yeti-791/Awesome-Offensive-AI-Agentic-Landscape",
+    "source": "github",
+    "summary": "This document curates open-source projects, academic papers, capability benchmarks, and commercial solutions (international & China) in AI penetration testing, LLM red teaming, autonomous offensive agents, and vulnerability discovery—aimed at helping researchers, security engineers, and enterprise decision-makers quickly form a holistic view.",
+    "released": "2026-06-11",
+    "stars": 464
+  },
+  {
+    "name": "oneil512/INSIGHT",
+    "url": "https://github.com/oneil512/INSIGHT",
+    "repo_url": "https://github.com/oneil512/INSIGHT",
+    "source": "github",
+    "summary": "INSIGHT is an autonomous AI that can do medical research!",
+    "released": "2023-04-08",
+    "stars": 414
+  }
+]
